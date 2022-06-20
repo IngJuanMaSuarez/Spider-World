@@ -18,7 +18,7 @@ map.on("load", () => {
   let airports;
 
   map.once("idle", () => {
-    d3.json("./data/airports.json", function (d) {
+    d3.json("./data/airports_world.json", function (d) {
       airports = d;
       getSpoke(airports);
     });
@@ -60,16 +60,16 @@ function buildSpoke(airports, point) {
 
     const endLng = nearest.geometry.coordinates[0];
 
-    // console.log("startlng", startLng);
-    // console.log("endLng", endLng);
+    console.log("startlng", startLng);
+    console.log("endLng", endLng);
 
     const nearestLine = turf.lineString([
       point.geometry.coordinates,
       nearest.geometry.coordinates,
     ]);
 
-    // console.log("point", point.geometry.coordinates);
-    // console.log("nearest", nearest.geometry.coordinates);
+    console.log("point", point.geometry.coordinates);
+    console.log("nearest", nearest.geometry.coordinates);
 
     let buffNearest = turf.buffer(nearest, 10, { units: "kilometers" });
 

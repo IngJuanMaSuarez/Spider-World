@@ -1,6 +1,6 @@
 let initLoad = true;
 
-mapboxgl.accessToken = '';
+mapboxgl.accessToken = 'pk.eyJ1IjoiaW5nanVhbm1hc3VhcmV6IiwiYSI6ImNsNGxtMWp5cDE0djEza3BnN2JpcGpzYTIifQ.UYddHIdIp4FK9AuxH-lSYQ';
 const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
@@ -14,7 +14,7 @@ map.on('load', () => {
     let airports;
 
     map.once('idle', () => {
-        d3.json("./data/airport.json", function (d) {
+        d3.json("./data/airports_world.json", function (d) {
             airports = d;
             getSpoke(airports);
         });
@@ -43,7 +43,7 @@ function buildSpoke(airports, point) {
     let nearestAirportLines = turf.featureCollection([]);
     let cleanedAirports = JSON.parse(JSON.stringify(airports));
 
-    for (let i=1;i<=10;i++) {
+    for (let i = 1; i <= 8; i++) {
         const nearest = turf.nearestPoint(point, cleanedAirports);
         const startLng = point.geometry.coordinates[0];
         const endLng = nearest.geometry.coordinates[0];
@@ -54,7 +54,13 @@ function buildSpoke(airports, point) {
             nearest.geometry.coordinates[0] -= 360;
         }
 
+        console.log("startlng", startLng);
+        console.log("endLng", endLng);
+
         const nearestLine = turf.lineString([point.geometry.coordinates, nearest.geometry.coordinates]);
+
+        console.log("point", point.geometry.coordinates);
+        console.log("nearest", nearest.geometry.coordinates);
         
         nearestAirports.features.push(nearest);
         nearestAirportLines.features.push(nearestLine);
