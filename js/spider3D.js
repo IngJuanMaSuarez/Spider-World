@@ -1,6 +1,6 @@
 let initLoad = true;
 
-mapboxgl.accessToken = 'pk.eyJ1IjoiaW5nanVhbm1hc3VhcmV6IiwiYSI6ImNsNGxtMWp5cDE0djEza3BnN2JpcGpzYTIifQ.UYddHIdIp4FK9AuxH-lSYQ';
+mapboxgl.accessToken = 'pk.eyJ1IjoiaW5nanVhbm1hc3VhcmV6IiwiYSI6ImNsZDZjMXJpYTFhdzgzdnBhZXdkczQxcnQifQ.25y1PWrOTW12YssZ73JQtA';
 const map = new mapboxgl.Map({
   container: "map",
   style: "mapbox://styles/mapbox/streets-v11",
